@@ -1,7 +1,11 @@
 let page = 1;
-let API_URL_POPULAR = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=${page}`;
+const API_KEY = "05e9a602-4603-45a6-9230-615c4c905ab0";
+
+const API_URL_POPULAR = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=${page}`;
+const API_URL_AWAIT = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_AWAIT_FILMS&page=${page}`;
+const API_URL_TOP250 = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=${page}`;
+
 const API_URL_SEARCH = "https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=";
-let API_URL_TOP250 = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=${page}`;
 
 getMovies(API_URL_POPULAR);
 
@@ -91,8 +95,22 @@ prev.onclick = function () {
     window.scrollTo(0, 0);
 }
 
-const select = document.getElementById('top250');
 
-select.onclick = function () {
-    getMovies(API_URL_TOP250);
+
+function changeTop() {
+    let top = document.getElementById('header_select').selectedIndex + 1;
+
+    switch (top) {
+        case 1:
+            getMovies(API_URL_POPULAR)
+            break
+
+        case 2:
+            getMovies(API_URL_TOP250)
+            break
+
+        case 3:
+            getMovies(API_URL_AWAIT)
+            break;
+    }
 }

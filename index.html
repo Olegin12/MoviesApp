@@ -15,7 +15,7 @@
     <div class="header_content">
         <a href="index.html" class="header_logo">Movies</a>
         <form>
-            <select id="header_select">
+            <select id="header_select" onchange="changeTop()">
                 <option value="top100">TOP 100</option>
                 <option value="top250">TOP 250</option>
                 <option value="await">TOP await</option>
@@ -26,11 +26,11 @@
 </header>
 <div class="container">
     <div class="movies">
-        <div class="button">
-            <button id="prev">&#8592;</button>
-            <div id="pageNumber" class="page_number">1/7</div>
-            <button id="next">&#8594;</button>
-        </div>
+    </div>
+    <div class="button">
+        <button id="prev">&#8592;</button>
+        <div id="pageNumber" class="page_number">1/7</div>
+        <button id="next">&#8594;</button>
     </div>
 </div>
 <script src="app.js"></script>
