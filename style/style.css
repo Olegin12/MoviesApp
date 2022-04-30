@@ -123,12 +123,14 @@ button {
     background-color: rgba(190, 190, 190, 0.1);
     border-radius: 5px;
     color: white;
+    display: block;
 }
 
 .button {
-    display: inline-block;
-    justify-content: center;
-    margin-bottom: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 20px;
 }
 
 .page_number {
