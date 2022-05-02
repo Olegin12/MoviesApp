@@ -1,10 +1,10 @@
 let page = 1;
 const API_KEY = "05e9a602-4603-45a6-9230-615c4c905ab0";
-let page_count = 7;
+let page_count;
 
 const API_URL_POPULAR = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=${page}`;
-const API_URL_AWAIT = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_AWAIT_FILMS&page=${page}`;
-const API_URL_TOP250 = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=${page}`;
+// const API_URL_AWAIT = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_AWAIT_FILMS&page=${page}`;
+// const API_URL_TOP250 = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=${page}`;
 
 const API_URL_SEARCH = "https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=";
 
@@ -56,8 +56,10 @@ function showMovies(data) {
                     )}</div>
                     <div class="movie_average movie_average-${getClassByRate(movie.rating)}">${movie.rating}</div>
                 </div>
+                <button class="more_information">Подробнее</button> 
                         `;
         moviesEl.appendChild(movieEl);
+        /* TODO    modal window */
     });
 }
 
@@ -74,28 +76,8 @@ form.addEventListener("submit", (e) => {
   }
 })
 
-function changeTop() {
-    let top = document.getElementById('header_select').selectedIndex + 1;
-
-    switch (top) {
-        case 1:
-            getMovies(API_URL_POPULAR)
-            break
-
-        case 2:
-            getMovies(API_URL_TOP250)
-            break
-
-        case 3:
-            getMovies(API_URL_AWAIT)
-            break;
-    }
-}
-
-
 const next = document.getElementById('next');
 const prev = document.getElementById('prev');
-const pageNumber = document.getElementById('pageNumber');
 
 next.onclick = function () {
     page ++;
@@ -103,21 +85,8 @@ next.onclick = function () {
         page = page_count;
     }
 
-    let top = document.getElementById('header_select').selectedIndex + 1;
-
-    switch (top) {
-        case 1:
-            getMovies(`https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=${page}`)
-            break
-
-        case 2:
-            getMovies(`https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=${page}`)
-            break
-
-        case 3:
-            getMovies(`https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_AWAIT_FILMS&page=${page}`)
-            break;
-    }
+    selectedTop()
+    /*TODO  smth with page number*/
 
     window.scrollTo(0, 0);
 }
@@ -129,6 +98,13 @@ prev.onclick = function () {
         page = 1;
     }
 
+    selectedTop();
+    /*TODO  smth with page number*/
+
+    window.scrollTo(0, 0);
+}
+
+function selectedTop () {
     let top = document.getElementById('header_select').selectedIndex + 1;
 
     switch (top) {
@@ -144,6 +120,4 @@ prev.onclick = function () {
             getMovies(`https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_AWAIT_FILMS&page=${page}`)
             break;
     }
-
-    window.scrollTo(0, 0);
 }
