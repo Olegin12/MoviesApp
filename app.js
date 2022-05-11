@@ -56,11 +56,22 @@ function showMovies(data) {
                     )}</div>
                     <div class="movie_average movie_average-${getClassByRate(movie.rating)}">${movie.rating}</div>
                 </div>
-                <button class="more_information">Подробнее</button> 
+                <button class="more_information" onclick="getMovieInformation(${movie.filmId})">Подробнее</button>
                         `;
         moviesEl.appendChild(movieEl);
         /* TODO    modal window */
     });
+}
+
+function getMovieInformation (id) {
+   console.log(id);
+   const movieInfo = document.createElement("div");
+    movieInfo.classList.add("modal");
+    movieInfo.innerHTML = `
+    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto aspernatur, at debitis deleniti dolor ducimus hic inventore, nisi nobis odit, perspiciatis porro recusandae rem sapiente suscipit ut veniam vero!</div>
+    <div>Accusantium architecto aspernatur dolorem doloribus eius facilis fuga impedit minima modi molestiae non, perspiciatis quis quisquam repellat reprehenderit sed sequi tempora ut? Dolores doloribus eius exercitationem, facere reiciendis tenetur veritatis.</div>
+    `;
+    document.body.appendChild(movieInfo);
 }
 
 const form = document.querySelector("form");
@@ -121,3 +132,4 @@ function selectedTop () {
             break;
     }
 }
+
