@@ -4,8 +4,8 @@ let page_count;
 let id = 1;
 
 const API_URL_POPULAR = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=${page}`;
-// const API_URL_AWAIT = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_AWAIT_FILMS&page=${page}`;
-// const API_URL_TOP250 = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=${page}`;
+const API_URL_AWAIT = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_AWAIT_FILMS&page=${page}`;
+const API_URL_TOP250 = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=${page}`;
 const API_URL_INFO = `https://kinopoiskapiunofficial.tech/api/v2.2/films/${id}`
 
 const API_URL_SEARCH = "https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=";
@@ -65,7 +65,7 @@ function showMovies(data) {
 }
 
 function getMovieInformation (id) {
-   console.log(id);
+   console.log(API_URL_INFO + id);
    const movieInfo = document.createElement("div");
     movieInfo.classList.add("modal");
     movieInfo.innerHTML = `
@@ -120,15 +120,15 @@ function selectedTop () {
 
     switch (top) {
         case 1:
-            getMovies(`https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=${page}`)
+            getMovies(API_URL_POPULAR + page)
             break
 
         case 2:
-            getMovies(`https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=${page}`)
+            getMovies(API_URL_TOP250 + page)
             break
 
         case 3:
-            getMovies(`https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_AWAIT_FILMS&page=${page}`)
+            getMovies(API_URL_AWAIT + page)
             break;
     }
 }
