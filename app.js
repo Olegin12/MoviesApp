@@ -1,10 +1,12 @@
-let page = 1;
 const API_KEY = "05e9a602-4603-45a6-9230-615c4c905ab0";
+let page = 1;
 let page_count;
+let id = 1;
 
 const API_URL_POPULAR = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=${page}`;
 // const API_URL_AWAIT = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_AWAIT_FILMS&page=${page}`;
 // const API_URL_TOP250 = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=${page}`;
+const API_URL_INFO = `https://kinopoiskapiunofficial.tech/api/v2.2/films/${id}`
 
 const API_URL_SEARCH = "https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=";
 
@@ -59,7 +61,6 @@ function showMovies(data) {
                 <button class="more_information" onclick="getMovieInformation(${movie.filmId})">Подробнее</button>
                         `;
         moviesEl.appendChild(movieEl);
-        /* TODO    modal window */
     });
 }
 
@@ -69,7 +70,6 @@ function getMovieInformation (id) {
     movieInfo.classList.add("modal");
     movieInfo.innerHTML = `
     <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto aspernatur, at debitis deleniti dolor ducimus hic inventore, nisi nobis odit, perspiciatis porro recusandae rem sapiente suscipit ut veniam vero!</div>
-    <div>Accusantium architecto aspernatur dolorem doloribus eius facilis fuga impedit minima modi molestiae non, perspiciatis quis quisquam repellat reprehenderit sed sequi tempora ut? Dolores doloribus eius exercitationem, facere reiciendis tenetur veritatis.</div>
     `;
     document.body.appendChild(movieInfo);
 }
