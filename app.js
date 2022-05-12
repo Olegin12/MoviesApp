@@ -116,6 +116,7 @@ prev.onclick = function () {
 }
 
 function selectedTop () {
+
     let top = document.getElementById('header_select').selectedIndex + 1;
 
     switch (top) {
