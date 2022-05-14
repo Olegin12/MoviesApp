@@ -70,8 +70,14 @@ function getMovieInformation (id) {
     movieInfo.classList.add("modal");
     movieInfo.innerHTML = `
     <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto aspernatur, at debitis deleniti dolor ducimus hic inventore, nisi nobis odit, perspiciatis porro recusandae rem sapiente suscipit ut veniam vero!</div>
-    `;
+    <button onclick="movieInfoClose()"></button>`;
     document.body.appendChild(movieInfo);
+}
+
+function movieInfoClose() {
+    const movieInfo = document.getElementsByClassName("modal");
+    movieInfo.classList.add("modal_hidden");
+    /* TODO add hidden */
 }
 
 const form = document.querySelector("form");
@@ -116,7 +122,7 @@ prev.onclick = function () {
 }
 
 function selectedTop () {
-
+    console.log(page);
     let top = document.getElementById('header_select').selectedIndex + 1;
 
     switch (top) {
@@ -133,4 +139,3 @@ function selectedTop () {
             break;
     }
 }
-
