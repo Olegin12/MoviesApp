@@ -75,9 +75,9 @@ function getMovieInformation (id) {
 }
 
 function movieInfoClose() {
-    const movieInfo = document.getElementsByClassName("modal");
-    movieInfo.classList.add("modal_hidden");
-    /* TODO add hidden */
+    const movieInfo = document.getElementsByClassName(".modal");
+    movieInfo.style.visibility = "hidden";
+    /* TODO change hidden */
 }
 
 const form = document.querySelector("form");
@@ -122,7 +122,6 @@ prev.onclick = function () {
 }
 
 function selectedTop () {
-    console.log(page);
     let top = document.getElementById('header_select').selectedIndex + 1;
 
     switch (top) {
