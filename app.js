@@ -1,12 +1,12 @@
 const API_KEY = "05e9a602-4603-45a6-9230-615c4c905ab0";
 let page = 1;
 let page_count;
-let id = 1;
+
 
 const API_URL_POPULAR = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=${page}`;
 const API_URL_AWAIT = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_AWAIT_FILMS&page=${page}`;
 const API_URL_TOP250 = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=${page}`;
-const API_URL_INFO = `https://kinopoiskapiunofficial.tech/api/v2.2/films/${id}`
+const API_URL_INFO = `https://kinopoiskapiunofficial.tech/api/v2.2/films/`
 
 const API_URL_SEARCH = "https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=";
 
@@ -58,26 +58,49 @@ function showMovies(data) {
                     )}</div>
                     <div class="movie_average movie_average-${getClassByRate(movie.rating)}">${movie.rating}</div>
                 </div>
-                <button class="more_information" onclick="getMovieInformation(${movie.filmId})">Подробнее</button>
+                <button class="more_information" onclick="getMovieInformation(API_URL_INFO + ${movie.filmId})">Подробнее</button>
                         `;
         moviesEl.appendChild(movieEl);
     });
 }
 
-function getMovieInformation (id) {
-   console.log(API_URL_INFO + id);
-   const movieInfo = document.createElement("div");
-    movieInfo.classList.add("modal");
-    movieInfo.innerHTML = `
-    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto aspernatur, at debitis deleniti dolor ducimus hic inventore, nisi nobis odit, perspiciatis porro recusandae rem sapiente suscipit ut veniam vero!</div>
-    <button onclick="movieInfoClose()"></button>`;
-    document.body.appendChild(movieInfo);
+async function getMovieInformation (url) {
+    const resp = await fetch(url, {
+        headers: {
+            "Content-Type": "application/json",
+            "X-API-KEY": API_KEY,
+        },
+    });
+    const respData = await resp.json();
+    showMovieInfo(respData);
 }
 
-function movieInfoClose() {
-    const movieInfo = document.getElementsByClassName(".modal");
-    movieInfo.style.visibility = "hidden";
-    /* TODO change hidden */
+function showMovieInfo(movieData) {
+    const movieInfo = document.createElement("div");
+    movieInfo.classList.add("modal");
+    movieInfo.innerHTML = `
+    <div>${movieData.nameRu}</div>
+    <div>${movieData.genres}</div>
+    <img 
+        src="${movieData.posterUrlPreview}"
+        class="movie_cover"
+        alt="${movieData.nameRu}"
+        >
+    <div>${movieData.description}</div>
+    <button onclick="closeModal()" class="close">×</button>`;
+    document.body.appendChild(movieInfo);
+    window.onclick = function (e) {
+        if (e.target == movieInfo) {
+            movieInfo.style.display = "none";
+        }
+    }
+}
+
+function closeModal() {
+    var movieInfo = document.getElementsByClassName("modal");
+    for(var i=0; i<movieInfo.length; i++) {
+        movieInfo[i].style.display='none';
+    }
 }
 
 const form = document.querySelector("form");
