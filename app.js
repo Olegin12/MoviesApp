@@ -3,14 +3,14 @@ let page = 1;
 let page_count;
 
 
-const API_URL_POPULAR = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=${page}`;
-const API_URL_AWAIT = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_AWAIT_FILMS&page=${page}`;
-const API_URL_TOP250 = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=${page}`;
+const API_URL_POPULAR = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=`;
+const API_URL_AWAIT = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_AWAIT_FILMS&page=`;
+const API_URL_TOP250 = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=`;
 const API_URL_INFO = `https://kinopoiskapiunofficial.tech/api/v2.2/films/`
 
 const API_URL_SEARCH = "https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=";
 
-getMovies(API_URL_POPULAR);
+getMovies(API_URL_POPULAR + page);
 
 async function getMovies(url) {
     const resp = await fetch(url, {
@@ -126,7 +126,6 @@ next.onclick = function () {
     }
 
     selectedTop()
-    /*TODO  smth with page number*/
 
     window.scrollTo(0, 0);
 }
@@ -139,7 +138,6 @@ prev.onclick = function () {
     }
 
     selectedTop();
-    /*TODO  smth with page number*/
 
     window.scrollTo(0, 0);
 }
