@@ -76,18 +76,21 @@ async function getMovieInformation (url) {
 }
 
 function showMovieInfo(movieData) {
+    console.log(movieData);
     const movieInfo = document.createElement("div");
     movieInfo.classList.add("modal");
     movieInfo.innerHTML = `
-    <div>${movieData.nameRu}</div>
-    <div>${movieData.genres}</div>
+    <div class="modal_movie_title">${movieData.nameRu}</div>
+    <div class="modal_movie_category">${movieData.genres.map(
+        (genre) => ` ${genre.genre}`
+    )}</div>
     <img 
         src="${movieData.posterUrlPreview}"
-        class="movie_cover"
+        class="modal_movie_cover"
         alt="${movieData.nameRu}"
         >
-    <div>${movieData.description}</div>
-    <button onclick="closeModal()" class="close">×</button>`;
+    <div class="modal_movie_info">${movieData.description}</div>
+    <button onclick="closeModal()" class="modal_button_close">×</button>`;
     document.body.appendChild(movieInfo);
     window.onclick = function (e) {
         if (e.target == movieInfo) {
