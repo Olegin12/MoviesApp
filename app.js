@@ -76,7 +76,7 @@ async function getMovieInformation (url) {
 }
 
 function showMovieInfo(movieData) {
-    console.log(movieData);
+    // console.log(movieData);
     const movieInfo = document.createElement("div");
     movieInfo.classList.add("modal");
     movieInfo.innerHTML = `
@@ -94,7 +94,7 @@ function showMovieInfo(movieData) {
     document.body.appendChild(movieInfo);
     window.onclick = function (e) {
         if (e.target == movieInfo) {
-            movieInfo.style.display = "none";
+            movieInfo.remove();
         }
     }
 }
@@ -102,7 +102,7 @@ function showMovieInfo(movieData) {
 function closeModal() {
     var movieInfo = document.getElementsByClassName("modal");
     for(var i=0; i<movieInfo.length; i++) {
-        movieInfo[i].style.display='none';
+        movieInfo[i].remove();
     }
 }
 
