@@ -3,10 +3,14 @@ let page = 1;
 let page_count;
 
 
-const API_URL_POPULAR = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=`;
-const API_URL_AWAIT = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_AWAIT_FILMS&page=`;
-const API_URL_TOP250 = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=`;
-const API_URL_INFO = `https://kinopoiskapiunofficial.tech/api/v2.2/films/`
+const API_URL_POPULAR = "https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=";
+const API_URL_AWAIT = "https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_AWAIT_FILMS&page=";
+const API_URL_TOP250 = "https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=";
+const API_URL_INFO = "https://kinopoiskapiunofficial.tech/api/v2.2/films/";
+const API_URL_STAFF = "https://kinopoiskapiunofficial.tech/api/v1/staff?filmId=";
+
+/* const API_URL_PREMIER = "https://kinopoiskapiunofficial.tech/api/v2.2/films/premieres?year=2022&month=JANUARY";
+* TRY to get movies from premier*/
 
 const API_URL_SEARCH = "https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=";
 
@@ -72,25 +76,47 @@ async function getMovieInformation (url) {
         },
     });
     const respData = await resp.json();
+    //console.log(respData);
     showMovieInfo(respData);
 }
 
+async function getStaff (url) {
+    const resp = await fetch(url, {
+        headers: {
+            "Content-Type": "application/json",
+            "X-API-KEY": API_KEY,
+        },
+    });
+    const respData = await resp.json();
+    showStuff(respData);
+}
+
+function showStuff(data) {
+    const movieStuff = document.createElement("div");
+    movieStuff.classList.add("movie_stuff");
+    for (var i = 1; i < 4; i++) {
+      console.log(data[i].nameRu);
+    }
+}
+
 function showMovieInfo(movieData) {
-    // console.log(movieData);
+    console.log(movieData);
     const movieInfo = document.createElement("div");
     movieInfo.classList.add("modal");
     movieInfo.innerHTML = `
-    <div class="modal_movie_title">${movieData.nameRu}</div>
-    <div class="modal_movie_category">${movieData.genres.map(
-        (genre) => ` ${genre.genre}`
-    )}</div>
-    <img 
-        src="${movieData.posterUrlPreview}"
-        class="modal_movie_cover"
-        alt="${movieData.nameRu}"
-        >
-    <div class="modal_movie_info">${movieData.description}</div>
-    <button onclick="closeModal()" class="modal_button_close">×</button>`;
+        <div class="modal_movie_title">${movieData.nameRu}</div>
+        <div class="modal_movie_category">${movieData.genres.map(
+            (genre) => ` ${genre.genre}`
+        )}</div>
+        <img 
+            src="${movieData.posterUrlPreview}"
+            class="modal_movie_cover"
+            alt="${movieData.nameRu}"
+            >
+        <div class="modal_movie_info">${movieData.description}</div>
+        <button onclick="closeModal()" class="modal_button_close">×</button>
+        <button onclick="getStaff(API_URL_STAFF + ${movieData.kinopoiskId})">Staff</button>
+    `;
     document.body.appendChild(movieInfo);
     window.onclick = function (e) {
         if (e.target == movieInfo) {
