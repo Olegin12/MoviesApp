@@ -70,8 +70,13 @@ body {
     z-index: 1;
 }
 
-.movie_cover-dark:hover {
-    background-color: grey;
+/*.movie_cover-dark:hover {*/
+/*    background-color: grey;*/
+/*    cursor: pointer;*/
+/*}*/
+
+.movie:hover {
+    background-color: rgba(56, 56, 56, 0.7);
     cursor: pointer;
 }
 

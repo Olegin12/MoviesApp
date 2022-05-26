@@ -47,6 +47,9 @@ function showMovies(data) {
     data.films.forEach(movie => {
         const movieEl = document.createElement("div")
         movieEl.classList.add("movie")
+        movieEl.addEventListener('click', function (e) {
+            getMovieInformation(API_URL_INFO + movie.filmId)
+        })
         movieEl.innerHTML = `
            <div class="movie_cover-inner">
                     <img
@@ -62,7 +65,7 @@ function showMovies(data) {
                     )}</div>
                     <div class="movie_average movie_average-${getClassByRate(movie.rating)}">${movie.rating}</div>
                 </div>
-                <button class="more_information" onclick="getMovieInformation(API_URL_INFO + ${movie.filmId})">Подробнее</button>
+                <button class="more_information">Подробнее</button>
                         `;
         moviesEl.appendChild(movieEl);
     });
