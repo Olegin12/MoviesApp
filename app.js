@@ -102,7 +102,7 @@ function showStuff(data) {
         stuff[i] = (data[i].nameRu);
     }
     movieStuff.innerHTML = `
-    <div>${stuff.join(', ')}</div>`;
+    <div>Актёры: ${stuff.join(', ')}</div>`;
     modal[0].appendChild(movieStuff);
 }
 

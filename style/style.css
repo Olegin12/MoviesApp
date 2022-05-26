@@ -137,6 +137,10 @@ button {
     display: block;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 .button {
     display: flex;
     flex-direction: row;
