@@ -161,6 +161,7 @@ button {
     z-index: 99;
     padding:30px 0;
     background-color: rgba(50, 73, 110, 0.7);
+    color: white;
 }
 
 .modal_movie_title {

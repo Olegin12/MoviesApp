@@ -76,7 +76,6 @@ async function getMovieInformation (url) {
         },
     });
     const respData = await resp.json();
-    //console.log(respData);
     showMovieInfo(respData);
 }
 
@@ -92,19 +91,25 @@ async function getStaff (url) {
 }
 
 function showStuff(data) {
+    let stuff = [];
+    const modal = document.getElementsByClassName("modal");
     const movieStuff = document.createElement("div");
     movieStuff.classList.add("movie_stuff");
-    for (var i = 1; i < 4; i++) {
-      console.log(data[i].nameRu);
+    for (var i = 0; i < 4; i++) {
+        stuff[i] = (data[i].nameRu);
     }
+    movieStuff.innerHTML = `
+    <div>${stuff.join(', ')}</div>`;
+    modal[0].appendChild(movieStuff);
 }
 
 function showMovieInfo(movieData) {
-    console.log(movieData);
+    //console.table(movieData);
     const movieInfo = document.createElement("div");
     movieInfo.classList.add("modal");
     movieInfo.innerHTML = `
         <div class="modal_movie_title">${movieData.nameRu}</div>
+        <div class="modal_movie_year">${movieData.year}</div>
         <div class="modal_movie_category">${movieData.genres.map(
             (genre) => ` ${genre.genre}`
         )}</div>
@@ -115,8 +120,8 @@ function showMovieInfo(movieData) {
             >
         <div class="modal_movie_info">${movieData.description}</div>
         <button onclick="closeModal()" class="modal_button_close">×</button>
-        <button onclick="getStaff(API_URL_STAFF + ${movieData.kinopoiskId})">Staff</button>
     `;
+    getStaff(API_URL_STAFF + movieData.kinopoiskId);
     document.body.appendChild(movieInfo);
     window.onclick = function (e) {
         if (e.target == movieInfo) {
