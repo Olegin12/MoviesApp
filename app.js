@@ -108,6 +108,7 @@ function showStuff(data) {
 
 function showMovieInfo(movieData) {
     //console.table(movieData);
+    const date = new Date ();
     const movieInfo = document.createElement("div");
     movieInfo.classList.add("modal");
     movieInfo.innerHTML = `
