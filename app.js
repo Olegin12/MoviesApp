@@ -108,7 +108,6 @@ function showStuff(data) {
 
 function showMovieInfo(movieData) {
     //console.table(movieData);
-    const date = new Date ();
     const movieInfo = document.createElement("div");
     movieInfo.classList.add("modal");
     movieInfo.innerHTML = `
@@ -125,6 +124,7 @@ function showMovieInfo(movieData) {
         <div class="modal_movie_info">${movieData.description}</div>
         <button onclick="closeModal()" class="modal_button_close">×</button>
     `;
+    getSeriesInfo(movieData);
     getStaff(API_URL_STAFF + movieData.kinopoiskId);
     document.body.appendChild(movieInfo);
     window.onclick = function (e) {
@@ -132,6 +132,21 @@ function showMovieInfo(movieData) {
             movieInfo.remove();
         }
     }
+}
+
+function getSeriesInfo(movieData) {
+    const date = new Date ();
+    const modal = document.getElementsByClassName("modal");
+    const seriesInfo = document.createElement("div");
+    seriesInfo.innerHTML = `<div class="series_info">${movieData.endYear}</div>`;
+    if (movieData.serial) {
+        if (movieData.endYear === null) {
+            console.log(date.getFullYear());
+        } else {
+            console.log(`${movieData.endYear}`);
+        }
+    }
+    modal[1].appendChild(seriesInfo);
 }
 
 function closeModal() {
