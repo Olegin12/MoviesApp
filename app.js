@@ -47,7 +47,7 @@ function showMovies(data) {
     data.films.forEach(movie => {
         const movieEl = document.createElement("div")
         movieEl.classList.add("movie")
-        movieEl.addEventListener('click', function (e) {
+        movieEl.addEventListener('click', function () {
             getMovieInformation(API_URL_INFO + movie.filmId)
         })
         movieEl.innerHTML = `
@@ -112,7 +112,7 @@ function showMovieInfo(movieData) {
     movieInfo.classList.add("modal");
     movieInfo.innerHTML = `
         <div class="modal_movie_title">${movieData.nameRu}</div>
-        <div class="modal_movie_year">${movieData.year}</div>
+       
         <div class="modal_movie_category">${movieData.genres.map(
             (genre) => ` ${genre.genre}`
         )}</div>
@@ -124,29 +124,35 @@ function showMovieInfo(movieData) {
         <div class="modal_movie_info">${movieData.description}</div>
         <button onclick="closeModal()" class="modal_button_close">×</button>
     `;
-    getSeriesInfo(movieData);
-    getStaff(API_URL_STAFF + movieData.kinopoiskId);
     document.body.appendChild(movieInfo);
+    getYearsInfo(movieData);
+    getStaff(API_URL_STAFF + movieData.kinopoiskId);
     window.onclick = function (e) {
-        if (e.target == movieInfo) {
+        if (e.target === movieInfo) {
             movieInfo.remove();
         }
     }
 }
 
-function getSeriesInfo(movieData) {
-    const date = new Date ();
+function getYearsInfo(movieData) {
     const modal = document.getElementsByClassName("modal");
-    const seriesInfo = document.createElement("div");
-    seriesInfo.innerHTML = `<div class="series_info">${movieData.endYear}</div>`;
+    const yearsInfo = document.createElement("div");
+
     if (movieData.serial) {
         if (movieData.endYear === null) {
-            console.log(date.getFullYear());
+            yearsInfo.innerHTML = `
+                <div class="modal_movie_year">${movieData.year} - ...</div>
+            `;
         } else {
-            console.log(`${movieData.endYear}`);
+            yearsInfo.innerHTML = `
+                <div class="modal_movie_year">${movieData.year} - ${movieData.endYear}</div>
+            `;
         }
+    } else {
+        yearsInfo.innerHTML = `
+        <div class="modal_movie_year">${movieData.year}</div>`;
     }
-    modal[1].appendChild(seriesInfo);
+    modal[0].appendChild(yearsInfo);
 }
 
 function closeModal() {
