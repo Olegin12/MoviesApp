@@ -1,0 +1,20 @@
+{
+  "name": "moviesapp",
+  "version": "1.0.0",
+  "description": "My first API app",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Olegin12/MoviesApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Olegin12/MoviesApp/issues"
+  },
+  "homepage": "https://github.com/Olegin12/MoviesApp#readme"
+}

@@ -13,6 +13,11 @@ export async function getMovies(url) {
             "X-API-KEY": API_KEY,
         },
     });
+    /*
+    Promise.race([resp]).then(() => {
+        document.getElementById("preloader").style.display = "none";
+    })
+    */
     const respData = await resp.json();
     showMovies(respData);
     pages.page_count = respData.pagesCount;
