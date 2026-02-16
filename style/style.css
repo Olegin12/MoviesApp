@@ -75,10 +75,10 @@ body {
     cursor: pointer;
 }
 
-/*.movie:hover {*/
-/*    background-color: rgba(56, 56, 56, 0.7);*/
-/*    cursor: pointer;*/
-/*}*/
+.movie:hover {
+    background-color: rgba(56, 56, 56, 0.7);
+    cursor: pointer;
+}
 
 .movie_info {
     padding: 10px 0;
