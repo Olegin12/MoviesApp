@@ -13,6 +13,7 @@ export function searchFilms() {
             getMovies(apiSearchUrl);
             search.value = "";
             pages.page = 1;
+            //add string with search text at the top of the page
         }
     })
 }

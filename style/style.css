@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: #05182f;
+    background-color: #0b2b54;
     font-family: "Ramaraja", sans-serif;
 }
 
@@ -25,12 +25,12 @@ body {
 .header_logo {
     font-size: 32px;
     text-decoration: none;
-    color: azure;
+    color: #bebebe;
 }
 
 .header_search {
     padding: 8px;
-    border: 2px solid #05182f;
+    border: 2px solid #020f25;
     border-radius: 16px;
     outline: none;
     background-color: #bebebe;
@@ -70,15 +70,15 @@ body {
     z-index: 1;
 }
 
-/*.movie_cover-dark:hover {*/
-/*    background-color: grey;*/
-/*    cursor: pointer;*/
-/*}*/
-
-.movie:hover {
+.movie_cover-dark:hover {
     background-color: rgba(56, 56, 56, 0.7);
     cursor: pointer;
 }
+
+/*.movie:hover {*/
+/*    background-color: rgba(56, 56, 56, 0.7);*/
+/*    cursor: pointer;*/
+/*}*/
 
 .movie_info {
     padding: 10px 0;

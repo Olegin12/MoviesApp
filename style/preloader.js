@@ -3,5 +3,5 @@ window.onload = function preloader() {
     window.setTimeout(function () {
         document.body.classList.add('loaded');
         document.body.classList.remove('loaded_hiding');
-    }, 1000);
+    }, 100);
 }

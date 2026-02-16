@@ -12,6 +12,7 @@ export function showMovies(data) {
         movieEl.classList.add("movie")
         movieEl.addEventListener('click', function () {
             getMovieInformation(API_URL_INFO + movie.filmId)
+            console.log(movie); //check response and use kinopoiskId instead of filmId or change location of rating data
         })
         movieEl.innerHTML = `
            <div class="movie_cover-inner">

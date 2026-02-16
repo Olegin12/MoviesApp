@@ -28,5 +28,6 @@ export function showMovieInfo(movieData) {
             movieInfo.remove();
         }
     }
+    console.log(movieData);
     closeModal();
 }
